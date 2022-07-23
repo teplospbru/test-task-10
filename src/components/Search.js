@@ -22,8 +22,8 @@ const Search = () => {
 
     return (
         <div className="search">
-            <input type="text" placeholder="Поиск" value={ currentValue } onChange={ e => inputHandler(e) }></input>
-            <div className="search__icon" onClick={ () => clickHandler() }>
+            <input type="text" placeholder="Поиск" value={ currentValue } onChange={ e => inputHandler(e) } data-testid="search-input"></input>
+            <div className="search__icon" onClick={ () => clickHandler() } data-testid="search-btn">
                 <Link to='/'>
                     <svg>
                         <use xlinkHref="#search"></use>

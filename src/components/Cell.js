@@ -16,7 +16,7 @@ const Cell = ({ name, title }) => {
     };
 
     return (
-        <div className="th-content" onClick={ () => clickHandler() }>
+        <div className="th-content" onClick={ () => clickHandler() } data-testid="sort-{ name }">
             <span>{ title }</span>
             <div className="th-content__arrow">
                 {

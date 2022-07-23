@@ -32,15 +32,22 @@ const Pagination = () => {
 
     return (
         <div className="pagination">
-            <Link to={ '/' + clickBackValue } onClick={ () => backClickHandler() }>Назад</Link>
+            <Link to={ '/' + clickBackValue } onClick={ () => backClickHandler() }  data-testid="paginate-back">Назад</Link>
             <div>
                 {
                     arr.map(page => page == currentPage 
-                        ? <span className="active" key={ 'a_'+ page }>{ page }</span>  // цифра текущей страницы (зелёный цвет)
-                        : <Link to={ '/' + page } onClick={ () => clickHandler(page) } key={ 'a_'+ page }>{ page }</Link> )
+                        ? <span className="active" 
+                            key={ 'a_'+ page }  
+                            data-testid="paginate-current"
+                            >{ page }</span>  // цифра текущей страницы (зелёный цвет)
+                        : <Link to={ '/' + page } 
+                            onClick={ () => clickHandler(page) } 
+                            key={ 'a_'+ page }  
+                            data-testid="paginate-{ page }"
+                            >{ page }</Link> )
                 }
             </div>
-            <Link to={ '/' + clickForwardValue } onClick={ () => forwardClickHandler() }>Вперёд</Link>
+            <Link to={ '/' + clickForwardValue } onClick={ () => forwardClickHandler() }  data-testid="paginate-forward">Вперёд</Link>
         </div>
     )
 }

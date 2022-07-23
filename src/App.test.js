@@ -1,8 +1,11 @@
 import { render, screen } from '@testing-library/react';
+import { useDispatch, useSelector } from 'react-redux';
 import App from './App';
 
-test('renders learn react link', () => {
+test('renders onload', () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+
+  expect(screen.getAllByTestId('search-input')).toBeInTheDocument();
+  expect(screen.getAllByTestId('search-btn')).toBeInTheDocument();
+  expect(screen.getAllByText(/loading/i)).toBeInTheDocument();
 });
