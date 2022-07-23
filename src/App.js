@@ -1,24 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+// import { useParams } from 'react-router';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getPosts } from './redux/actions';
+
+// Components
+import Main from './components/Main';
+import Search from './components/Search';
 
 function App() {
+  const dispatch = useDispatch();
+  const { isLoading } = useSelector(state => state);
+  useEffect(() => {
+    dispatch(getPosts()); // Получаем посты при первой загрузке страницы
+  }, [dispatch]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <Search />
+        {
+          isLoading 
+            ? <span>Loading...</span> 
+            : <Routes>
+                <Route path="/:id" element={ <Main /> } /> 
+                <Route path="/" element={ <Main /> } /> 
+              </Routes>
+        }
+      </div>
+    </Router>
   );
 }
 
