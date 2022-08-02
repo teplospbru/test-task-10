@@ -1,4 +1,4 @@
-import { GET_POSTS, INPUT_VALUE, IS_LOADING, SEARCH, SET_CURRENT_PAGE, SORT } from "./constants";
+import { GET_POSTS, INPUT_VALUE, IS_LOADING, SEARCH, SET_CURRENT_PAGE } from "./constants";
 import { fetchPosts } from "../api/api";
 
 // Получаем посты с сервера
@@ -32,13 +32,5 @@ export const setCurrentPage = (page) => {
     return {
         type: SET_CURRENT_PAGE,
         payload: page
-    }
-};
-
-// Сортируем
-export const sort = ( name, isDescending ) => {
-    return {
-        type: SORT,
-        payload: { name, isDescending }
     }
 };

@@ -7,9 +7,9 @@ const Pagination = () => {
     const { currentPage, totalPages } = useSelector(state => state);
     const dispatch = useDispatch();
     // Определяем номер страницы пагинации, куда сошлётся кнопа "назад"
-    const clickBackValue = ((currentPage - 1) >= 1) ? (currentPage - 1) : currentPage;
+    const clickBackValue = ((parseInt(currentPage) - 1) >= 1) ? (parseInt(currentPage) - 1) : parseInt(currentPage);
     // Определяем номер страницы пагинации, куда сошлётся кнопа "вперед"
-    const clickForwardValue = ((currentPage + 1) <= totalPages) ? (currentPage + 1) : currentPage;
+    const clickForwardValue = ((parseInt(currentPage) + 1) <= totalPages) ? (parseInt(currentPage) + 1) : parseInt(currentPage);
 
     let arr = [];
     for(let i = 1; i <= totalPages; i++) {

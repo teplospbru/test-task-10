@@ -1,4 +1,4 @@
-import { GET_POSTS, INPUT_VALUE, IS_LOADING, SEARCH, SET_CURRENT_PAGE, SORT } from "./constants";
+import { GET_POSTS, INPUT_VALUE, IS_LOADING, SEARCH, SET_CURRENT_PAGE } from "./constants";
 
 export const initialState = {
     allPosts: [], // массив с загруженными постами
@@ -6,8 +6,6 @@ export const initialState = {
     currentValue: '', // Хэндлер инпута поиска
     filteredPosts:[], // Массив с отфильтрованными постами
     currentPage: 1, // текущая страница пагинации
-    sortBy: 'id', // поле сортировки
-    isDescending: false, // сортировка от Я до А
     isLoading: false, // Лоадер
     table: [
         { name: 'id', title: 'ID' },
@@ -51,35 +49,6 @@ export const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 currentPage: action.payload
-            }
-        case SORT:
-            const arr = [...state.filteredPosts];
-            if(action.payload.isDescending == false) {
-                arr.sort((a,b) => {
-                    if (a[action.payload.name] > b[action.payload.name]) {
-                        return 1;
-                      }
-                      if (a[action.payload.name] < b[action.payload.name]) {
-                        return -1;
-                      }
-                      return 0;
-                })
-            } else {
-                arr.sort((a,b) => {
-                    if (a[action.payload.name] < b[action.payload.name]) {
-                        return 1;
-                      }
-                      if (a[action.payload.name] > b[action.payload.name]) {
-                        return -1;
-                      }
-                      return 0;
-                })
-            }
-            return {
-                ...state,
-                sortBy: action.payload.name,
-                isDescending: action.payload.isDescending,
-                filteredPosts: arr
             }
         default: return state;
     }

@@ -47,7 +47,7 @@ body {
 }
 
 .search {
-  width: 630px;
+  max-width: 630px;
   height: 50px;
   margin-bottom: 15px;
   position: relative;
@@ -246,4 +246,11 @@ tbody td:first-child {
 }
 .pagination > div span.active, .pagination > div a.active {
   color: #7EBC3C;
+}
+@media (max-width: 1030px) {
+  .pagination > div {
+    -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+  }
 }

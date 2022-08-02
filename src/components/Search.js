@@ -20,9 +20,22 @@ const Search = () => {
         dispatch(search());
     }
 
+    // Хэндлер кнопки "enter"
+    const enterButtonHandler = e => {
+        if(e.key === 'Enter') {
+            dispatch(search());
+        }
+    }
+
     return (
         <div className="search">
-            <input type="text" placeholder="Поиск" value={ currentValue } onChange={ e => inputHandler(e) } data-testid="search-input"></input>
+            <input 
+                type="text" placeholder="Поиск" 
+                value={ currentValue } 
+                onChange={ e => inputHandler(e) } 
+                onKeyPress={ enterButtonHandler }
+                data-testid="search-input"
+            ></input>
             <div className="search__icon" onClick={ () => clickHandler() } data-testid="search-btn">
                 <Link to='/'>
                     <svg>

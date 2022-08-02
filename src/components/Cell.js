@@ -1,17 +1,13 @@
-import { useDispatch, useSelector } from "react-redux";
-import { sort } from "../redux/actions";
-
 // Ячейка заголовка таблицы
-const Cell = ({ name, title }) => {
-    const dispatch = useDispatch();
-    const { isDescending, sortBy } = useSelector(state => state);
+const Cell = ({ name, title, sortName, setSortName, isDescending, setDescending }) => {
 
     // Обработка клика по заголовку
     const clickHandler = () => {
-        if(name == sortBy) {
-            dispatch(sort(name, !isDescending));
+        setSortName(name)
+        if(name == sortName) {
+            setDescending(isDescending => !isDescending);
         } else {
-            dispatch(sort(name, false));
+            setDescending(false)
         }
     };
 
@@ -20,7 +16,7 @@ const Cell = ({ name, title }) => {
             <span>{ title }</span>
             <div className="th-content__arrow">
                 {
-                    (sortBy == name) && 
+                    (sortName == name) && 
                         <svg>
                             {
                                 isDescending 
